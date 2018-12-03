@@ -18,15 +18,26 @@ func init() {
 func main() {
 	data := utils.GetInput("./input")
 
+	var claims []Claim
+
+
 	for _, entry := range data {
 		fmt.Printf("Parse: '%s'\n", entry)
 		c := NewClaim(entry)
 		c.MarkGrid()
+
+		claims = append(claims, c)
 	}
 
-	fmt.Println(G.String())
-
+	fmt.Println()
 	fmt.Printf("Number of Cells Over Claimed: %d\n", G.GetOverclaimed())
+
+	for _, c := range claims {
+		if !G.HasOverlappedTile(c) {
+			fmt.Printf("Claim #%d has no overlaps", c.ID)
+			break
+		}
+	}
 }
 
 type Grid map[int]GridColumn
@@ -79,19 +90,14 @@ func (c *Claim) MarkGrid() {
 		}
 
 		for y := c.Y; y < yMax; y++ {
-			//fmt.Printf("Marking %d,%d\n", x, y)
-
 			switch G[x][y] {
 			case Unclaimed:
-				//fmt.Printf("%d,%d is Unclaimed, Claiming\n", x, y)
 				G[x][y] = Claimed
 				break
 			case Claimed:
-				//fmt.Printf("%d,%d was Claimed, now OverClaimed\n", x, y)
 				G[x][y] = OverClaimed
 				break
 			default:
-				//fmt.Printf("%d,%d is OverClaimed\n", x, y)
 				break
 			}
 		}
@@ -136,4 +142,20 @@ func (g *Grid) GetOverclaimed() int {
 	}
 
 	return overClaimed
+}
+
+func (g *Grid) HasOverlappedTile(c Claim) bool {
+	xMax := c.X + c.Width
+	yMax := c.Y + c.Height
+
+	for x := c.X; x < xMax; x++ {
+		for y := c.Y; y < yMax; y++ {
+			switch G[x][y] {
+			case OverClaimed:
+				return true
+			}
+		}
+	}
+
+	return false
 }
