@@ -17,7 +17,7 @@ func getFirstRepeat() {
 	totals := make(map[int]bool)
 
 	for {
-		file, err := os.Open("./input")
+		file, err := os.Open("../input")
 		if err != nil {
 			panic(err)
 		}

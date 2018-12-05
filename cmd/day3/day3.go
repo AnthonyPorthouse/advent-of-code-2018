@@ -1,7 +1,7 @@
 package main
 
 import (
-	"advent-of-code-2018/utils"
+	"advent-of-code-2018/internal/utils"
 	"fmt"
 	"regexp"
 	"strconv"

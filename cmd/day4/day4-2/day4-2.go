@@ -1,8 +1,8 @@
 package main
 
 import (
-	"advent-of-code-2018/utils"
-	"advent-of-code-2018/day4"
+	"advent-of-code-2018/internal/day4"
+	"advent-of-code-2018/internal/utils"
 	"sort"
 )
 

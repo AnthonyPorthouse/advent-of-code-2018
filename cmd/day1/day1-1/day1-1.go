@@ -13,7 +13,7 @@ func main()  {
 }
 
 func getTotal() {
-	file, err := os.Open("./input")
+	file, err := os.Open("../input")
 	if err != nil {
 		panic(err)
 	}

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"advent-of-code-2018/utils"
+	"advent-of-code-2018/internal/utils"
 	"fmt"
 )
 
 func main() {
-	data := utils.GetInput("./input")
+	data := utils.GetInput("../input")
 
 	var twos uint
 	var threes uint

@@ -1,13 +1,13 @@
 package main
 
 import (
-	"advent-of-code-2018/utils"
+	"advent-of-code-2018/internal/utils"
 	"fmt"
 	"github.com/xrash/smetrics"
 )
 
 func main() {
-	data := utils.GetInput("./input")
+	data := utils.GetInput("../input")
 
 	var lowestPair []string
 
