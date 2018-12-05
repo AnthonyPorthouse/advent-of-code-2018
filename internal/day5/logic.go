@@ -1,6 +1,7 @@
 package day5
 
 import (
+	"math"
 	"unicode"
 )
 
@@ -27,4 +28,37 @@ func ReduceString(chars []rune) []rune {
 	}
 
 	return chars
+}
+
+func removeUnit(char rune, input []rune) []rune {
+	var out []rune
+
+	var startRange int
+
+	for i := 0; i < len(input); i++ {
+		if unicode.ToLower(input[i]) == char {
+			out = append(out, input[startRange:i]...)
+			startRange = i + 1
+			continue
+		}
+	}
+
+	out = append(out, input[startRange:]...)
+
+	return out
+}
+
+func FindSmallest(input []rune) int {
+	shortest := math.MaxInt64
+
+	for i := 'a'; i <= 'z'; i++ {
+		chars := removeUnit(i, input)
+
+		l := len(ReduceString(chars))
+		if l < shortest {
+			shortest = l
+		}
+	}
+
+	return shortest
 }

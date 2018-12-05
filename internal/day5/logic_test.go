@@ -24,3 +24,22 @@ func TestReduceString(t *testing.T) {
 		})
 	}
 }
+
+func TestFindSmallest(t *testing.T) {
+	data := []struct{
+		in []rune
+		out int
+	}{
+		{[]rune("dabAcCaCBAcCcaDA"), 4},
+	}
+
+	for _, tt := range data {
+		t.Run(string(tt.in), func(t *testing.T) {
+			s := FindSmallest(tt.in)
+
+			if s != tt.out {
+				t.Errorf("got %q, want %q", s, tt.out)
+			}
+		})
+	}
+}
